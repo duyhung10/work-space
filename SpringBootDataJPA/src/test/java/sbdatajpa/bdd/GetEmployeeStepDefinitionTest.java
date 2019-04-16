@@ -13,8 +13,8 @@ public class GetEmployeeStepDefinitionTest extends AbstractSpringConfigurationTe
 	
 	private ResponseEntity<String> response=null;
 	
-	@Given("^the clien in localhost$")
-	public void the_clien_in_localhost() throws Throwable {
+	@Given("^the client in localhost$")
+	public void the_client_in_localhost() throws Throwable {
 		String url = buildUrl(HOST, PORT, "");
 		response = invokeRESTCall(url, HttpMethod.GET, null);
 	}
