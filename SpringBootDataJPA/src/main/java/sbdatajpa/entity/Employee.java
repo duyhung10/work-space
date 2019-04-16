@@ -10,20 +10,20 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "EMPLOYEE")
+@Table(name = "employee")
 public class Employee {
  
     @Id
     private Long id;
  
-    @Column(name = "Emp_No", length = 30, nullable = false)
+    @Column(name = "emp_no", length = 30, nullable = false)
     private String empNo;
  
-    @Column(name = "Full_Name", length = 128, nullable = false)
+    @Column(name = "full_name", length = 128, nullable = false)
     private String fullName;
  
     @Temporal(TemporalType.DATE)
-    @Column(name = "Hire_Date", nullable = false)
+    @Column(name = "hire_date", nullable = false)
     private Date hireDate;
  
     public Long getId() {
