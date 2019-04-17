@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -27,23 +28,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public abstract class AbstractSpringConfigurationTest {
 
 	@Autowired(required = false)
-	private TestRestTemplate restTemplate;
+	private TestRestTemplate testRestTemplate;
+	
+	protected RestTemplate restTemplate = new RestTemplate();
+	protected String statusCode;
+	
 	protected ObjectMapper mapper = new ObjectMapper();
 	protected static final String HOST = "localhost";
 	protected static final String PORT = "8080";
 
-	public TestRestTemplate getRestTemplate() {
+	public TestRestTemplate getTestRestTemplate() {
 
-		return restTemplate != null ? restTemplate : new TestRestTemplate();
+		return testRestTemplate != null ? testRestTemplate : new TestRestTemplate();
 	}
 
-	public void setRestTemplate(TestRestTemplate restTemplate) {
-		this.restTemplate = restTemplate;
+	public void setTestRestTemplate(TestRestTemplate testRestTemplate) {
+		this.testRestTemplate = testRestTemplate;
 	}
 
 	public ResponseEntity<String> invokeRESTCall(String url, HttpMethod method, HttpEntity<?> requestEntity) {
 
-		return getRestTemplate().exchange(url, method, requestEntity, String.class);
+		return getTestRestTemplate().exchange(url, method, requestEntity, String.class);
 	}
 
 	public HttpHeaders getDefaultHttpHeaders() {

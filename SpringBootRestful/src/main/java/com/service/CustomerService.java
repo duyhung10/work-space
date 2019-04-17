@@ -1,5 +1,8 @@
 package com.service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,7 @@ public class CustomerService {
 		
 		Status status = Status.SUCCESS;
 		String message = "Get All Customer Success";
-		Object data = customerRepository.findAll();
+		List<Customer> data =  customerRepository.findAll();
 		
 		ServiceResult serviceResult = new ServiceResult(status, message, data);
 		return serviceResult;
@@ -27,7 +30,10 @@ public class CustomerService {
 		Customer customer = customerRepository.findById(id).orElse(null);
 		
 		if(customer != null) {
-			serviceResult.setData(customer);
+			List<Customer> data = new LinkedList<>();
+			data.add(customer);
+			
+			serviceResult.setData(data);
 			serviceResult.setStatus(Status.SUCCESS);
 			serviceResult.setMessage("Get Current Customer Succces");
 		} else {
@@ -41,7 +47,9 @@ public class CustomerService {
 		
 		Status status = Status.SUCCESS;
 		String message = "Create new Customer Success";
-		Object data = customerRepository.save(customer);
+		Customer c = customerRepository.save(customer);
+		List<Customer> data = new LinkedList<>();
+		data.add(c);
 		
 		ServiceResult serviceResult = new ServiceResult(status, message, data);
 		return serviceResult;
@@ -55,7 +63,12 @@ public class CustomerService {
 		if(customerRepository.findById(customer.getId()).isPresent()) {
 			serviceResult.setStatus(Status.SUCCESS);
 			serviceResult.setMessage("Update Customer Succces");
-			serviceResult.setData(customerRepository.save(customer));
+			
+			Customer c = customerRepository.save(customer);
+			List<Customer> data = new LinkedList<>();
+			data.add(c);
+			
+			serviceResult.setData(data);
 		} else {
 			serviceResult.setStatus(Status.FAILED);
 			serviceResult.setMessage("Customer Not Found");

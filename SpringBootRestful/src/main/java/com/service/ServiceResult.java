@@ -1,10 +1,13 @@
 package com.service;
 
+import java.util.List;
+
+import com.entity.Customer;
 
 public class ServiceResult {
 	private Status status = null;
 	private String message;
-	private Object data;
+	private List<Customer> data;
 	
 	public enum Status {
 		SUCCESS, FAILED;
@@ -15,7 +18,7 @@ public class ServiceResult {
 	public ServiceResult() {
 	}
 
-	public ServiceResult(Status status, String message, Object data) {
+	public ServiceResult(Status status, String message, List<Customer> data) {
 		this.status = status;
 		this.message = message;
 		this.data = data;
@@ -37,11 +40,11 @@ public class ServiceResult {
 		this.message = message;
 	}
 
-	public Object getData() {
+	public List<Customer> getData() {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(List<Customer> data) {
 		this.data = data;
 	}
 }
