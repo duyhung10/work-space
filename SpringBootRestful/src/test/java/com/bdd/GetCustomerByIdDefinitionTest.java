@@ -33,12 +33,15 @@ public class GetCustomerByIdDefinitionTest extends AbstractSpringConfigurationTe
 			Customer c = serviceResult.getData().get(0);
 			customerName = c.getName();
 		} else {
-			customerName = null;
+			customerName = "null";
 		}
 	}
 
 	@Then("^the status is \"([^\"]*)\"$")
 	public void the_status_is(String status) throws Throwable {
+		if(statusCode.equals(status)) {
+			System.out.println("Find a customer with customer id!");
+		}
 		assertEquals(status, statusCode);
 	}
 
