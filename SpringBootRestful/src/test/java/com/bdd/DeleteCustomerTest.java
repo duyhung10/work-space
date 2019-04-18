@@ -42,7 +42,6 @@ public class DeleteCustomerTest extends AbstractSpringConfigurationTest {
 			System.out.println("Customer is not exist");
 		}
 		
-		
 	}
 
 	@Then("^response status is \"([^\"]*)\"$")

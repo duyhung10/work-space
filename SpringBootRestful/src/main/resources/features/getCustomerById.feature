@@ -9,4 +9,4 @@ Feature: To get the customer with customer details
       | id | status  | name         |
       | 2  | SUCCESS | Nguyen Hoang |
       | 4  | SUCCESS | Son          |
-      | 8  | FAILED  | null         |
+      | 88 | FAILED  | null         |

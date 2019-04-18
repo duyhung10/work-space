@@ -18,8 +18,6 @@ public class UpdateCustomerTest extends AbstractSpringConfigurationTest {
 	private CustomerService customerService;
 	
 	private Customer customer = new Customer();
-	private String customerName = null;
-	private String customerAddress = null;
 	
 	@Given("^the customer with customer id is (\\d+)$")
 	public void the_customer_with_customer_id_is(int id) throws Throwable {
@@ -34,34 +32,13 @@ public class UpdateCustomerTest extends AbstractSpringConfigurationTest {
 
 	@When("^the client calls Put \"([^\"]*)\" with the given details$")
 	public void the_client_calls_Put_with_the_given_details(String path) throws Throwable {
-		String url = buildUrl(HOST, PORT, path);
-		
-		// update customer
-		restTemplate.put(url, customer);
-		
-		// get that customer by id (after update)
-		ServiceResult serviceResult = customerService.findById(customer.getId());
-		
+		ServiceResult serviceResult = customerService.update(customer);
 		statusCode = serviceResult.getStatus().toString();
-		customerName = serviceResult.getData().get(0).getName();
-		customerAddress = serviceResult.getData().get(0).getAddress();
-		
-		System.out.println(statusCode +"/" + customerName + "/" + customerAddress);
 	}
 	
 	@Then("^result status is \"([^\"]*)\"$")
 	public void result_status_is(String status) throws Throwable {
 		assertEquals(status, statusCode);
-	}
-
-	@Then("^result customer name \"([^\"]*)\"$")
-	public void result_customer_name(String name) throws Throwable {
-		assertEquals(name, customerName);
-	}
-
-	@Then("^result customer address \"([^\"]*)\"$")
-	public void result_customer_address(String address) throws Throwable {
-		assertEquals(address, customerAddress);
 	}
 
 }
