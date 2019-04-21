@@ -91,4 +91,41 @@ public class CustomerService {
 		
 		return serviceResult;
 	}
+	
+	public ServiceResult createBasicInfor(String name) {
+		Customer customer = new Customer();
+		customer.setName(name);
+		
+		Status status = Status.SUCCESS;
+		String message = "Create new Customer with Customer with basic infor Success ";
+		Customer c = customerRepository.save(customer);
+		List<Customer> data = new LinkedList<>();
+		data.add(c);
+		
+		ServiceResult serviceResult = new ServiceResult(status, message, data);
+		return serviceResult;
+	}
+	public ServiceResult saveAttachInfor(int id, String address) {
+		final String DEFAULT  = "Default";
+
+		if(address.equals(DEFAULT)) {
+			Status status = Status.FAILED;
+			String message = "Create Failed";
+			
+			ServiceResult serviceResult = new ServiceResult(status, message, null);
+			return serviceResult;
+ 		} else {
+			Customer customer = customerRepository.findById(id).orElse(null);
+			customer.setAddress(address);
+			
+			Status status = Status.SUCCESS;
+			String message = "Create new Customer with Customer with full infor Success ";
+			Customer c = customerRepository.save(customer);
+			List<Customer> data = new LinkedList<>();
+			data.add(c);
+			
+			ServiceResult serviceResult = new ServiceResult(status, message, data);
+			return serviceResult;
+		}
+	}
 }
