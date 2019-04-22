@@ -50,6 +50,9 @@ public class CustomerController {
 		return customerService.delete(id);
 	}
 	
-	
+	@PostMapping("/customers-two-steps")
+	public ServiceResult createCustomerTwoSteps(@RequestBody Customer customer){
+		return customerService.createTwoSteps(customer);
+	}
 	
 }
