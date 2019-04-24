@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.entity.Customer;
 import com.repository.CustomerRepository;
@@ -135,25 +135,17 @@ public class CustomerService {
 		}
 	}
 	
-	@Transactional
-	public ServiceResult createTwoSteps(Customer customer) {
+	@Transactional(rollbackFor = Exception.class)
+	public ServiceResult createTwoSteps(Customer customer) throws Exception {
 		final String STATUSFAILED = "FAILED";
-		
-		String query1 = "start transaction;";
-		executeCustomQuery(query1);
-		String query2 = "begin;";
-		executeCustomQuery(query2);
-		String query3 = "savepoint sp1;";
-		executeCustomQuery(query3);
-
+		ServiceResult serviceResult2 = new ServiceResult();
 		
 		ServiceResult serviceResult1 = createBasicInfor(customer.getName());
 		int id = serviceResult1.getData().get(0).getId();
 		
-		ServiceResult serviceResult2 = saveAttachInfor(id, customer.getAddress());
+		serviceResult2 = saveAttachInfor(id, customer.getAddress());
 		if(serviceResult2.getStatus().toString().equals(STATUSFAILED)) {
-			String query4 = "rollback to sp1;";
-			executeCustomQuery(query4);
+			this.demoException();
 		}
 		
 		return serviceResult2;
@@ -162,5 +154,9 @@ public class CustomerService {
 	public void executeCustomQuery(String query) {
 		Query q = entityManager.createNativeQuery(query);
 		q.executeUpdate();
+	}
+	
+	public void demoException() throws Exception {
+		throw new Exception("Demo throw exception!!");
 	}
 }

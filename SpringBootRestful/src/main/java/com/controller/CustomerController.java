@@ -51,7 +51,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/customers-two-steps")
-	public ServiceResult createCustomerTwoSteps(@RequestBody Customer customer){
+	public ServiceResult createCustomerTwoSteps(@RequestBody Customer customer) throws Exception{
 		return customerService.createTwoSteps(customer);
 	}
 	

@@ -19,8 +19,6 @@ public class CreateCustomerTest extends AbstractSpringConfigurationTest {
 	public void the_customer_with_customer_name_and_customer_address(String name, String address) throws Throwable {
 		customer.setName(name);
 		customer.setAddress(address);
-		
-		System.out.println("Customer details: { Name: " + name + ", Address: " + address + " }");
 	}
 
 	@When("^the client calls POST \"([^\"]*)\" with the given details$")
