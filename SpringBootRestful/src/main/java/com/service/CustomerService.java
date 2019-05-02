@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.entity.Customer;
@@ -111,15 +112,19 @@ public class CustomerService {
 		ServiceResult serviceResult = new ServiceResult(status, message, data);
 		return serviceResult;
 	}
-	public ServiceResult saveAttachInfor(int id, String address) {
+	
+	@Transactional( propagation = Propagation.REQUIRED)
+	public ServiceResult saveAttachInfor(int id, String address) throws Exception {
 		final String DEFAULT  = "Default";
-
+		
 		if(address.equals(DEFAULT)) {
 			Status status = Status.FAILED;
 			String message = "Create Failed";
 			
 			ServiceResult serviceResult = new ServiceResult(status, message, null);
+			this.demoException();
 			return serviceResult;
+			
  		} else {
 			Customer customer = customerRepository.findById(id).orElse(null);
 			customer.setAddress(address);
@@ -135,18 +140,15 @@ public class CustomerService {
 		}
 	}
 	
-	@Transactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	public ServiceResult createTwoSteps(Customer customer) throws Exception {
-		final String STATUSFAILED = "FAILED";
+		
 		ServiceResult serviceResult2 = new ServiceResult();
 		
 		ServiceResult serviceResult1 = createBasicInfor(customer.getName());
 		int id = serviceResult1.getData().get(0).getId();
 		
 		serviceResult2 = saveAttachInfor(id, customer.getAddress());
-		if(serviceResult2.getStatus().toString().equals(STATUSFAILED)) {
-			this.demoException();
-		}
 		
 		return serviceResult2;
 	}
