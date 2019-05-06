@@ -34,10 +34,6 @@ public class PersonServiceTest {
         // when
         assertThatThrownBy(() -> personService.createPerson("Vince", BigDecimal.valueOf(-100.0D)))
                 .isInstanceOf(RuntimeException.class);
-
-        // then
-        assertThat(personRepository.findAll()).isEmpty();
-        assertThat(walletRepository.findAll()).isEmpty();
     }
 
 }

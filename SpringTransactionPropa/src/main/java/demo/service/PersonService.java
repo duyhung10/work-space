@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import demo.entity.Person;
@@ -57,6 +58,23 @@ public class PersonService {
 		wallet.setAmount(money); // ?!?
 //		walletRepository.save(wallet);
 
+		person.setWallet(wallet);
+
+		return person.getId();
+	}
+
+	@Transactional
+	public long createPerson(String name, BigDecimal money) {
+		Person person = new Person(name);
+		personRepository.save(person);
+
+		Wallet wallet = walletService.createWalletV4(money);
+		if (wallet.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+			throw new RuntimeException("Initial amount of money cannot be less than zero");
+		}
+		
+		System.out.println("Day la 1 dong test");
+		
 		person.setWallet(wallet);
 
 		return person.getId();
