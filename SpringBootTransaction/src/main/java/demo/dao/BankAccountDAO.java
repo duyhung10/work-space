@@ -48,7 +48,6 @@ public class BankAccountDAO extends JdbcDaoSupport {
 		}
 	}
 	
-	// MANDATORY: Giao dịch bắt buộc phải được tạo sẵn trước đó.
     @Transactional(propagation = Propagation.MANDATORY)
     public void addAmount(Long id, double amount) throws BankTransactionException {
         BankAccount account = this.findBankAccount(id);
@@ -66,7 +65,6 @@ public class BankAccountDAO extends JdbcDaoSupport {
         this.getJdbcTemplate().update(sqlUpdate, account.getBalance(), account.getId());
     }
     
-    // Không được bắt BankTransactionException trong phương thức này.
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = BankTransactionException.class)
     public void sendMoney(Long fromAccountId, Long toAccountId, double amount) throws BankTransactionException {
         addAmount(toAccountId, amount);

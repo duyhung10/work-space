@@ -14,16 +14,14 @@ import demo.service.PersonService;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class PersonServiceV4RollbackTest {
+public class PersonServiceV5Test {
 	@Autowired
 	private PersonService personService;
 
 	@Test
 	public void shouldNotCreateAnythingWhenTryingToCreatePersonWithNegativeAmountOfMoney() {
 		// when
-		assertThatThrownBy(() -> personService.createPersonV4("Vince", BigDecimal.valueOf(100.0D))).isInstanceOf(RuntimeException.class);
-		
-		
-		//Note		 100/ -100
+		assertThatThrownBy(() -> personService.createPersonV5("Mantoda", BigDecimal.valueOf(100.0D))).isInstanceOf(RuntimeException.class);
+
 	}
 }

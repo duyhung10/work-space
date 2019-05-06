@@ -51,9 +51,21 @@ public class WalletService {
 		return walletRepository.save(emptyWallet);
 	}
 
-	@Transactional(propagation = Propagation.REQUIRED)
-//	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+//	@Transactional(propagation = Propagation.REQUIRED)
 	public Wallet createWalletV4(BigDecimal money) {
+		Wallet emptyWallet = new Wallet(money);
+		return walletRepository.save(emptyWallet);
+	}
+	
+	@Transactional(propagation = Propagation.MANDATORY)
+	public Wallet createWalletV5(BigDecimal money) {
+		Wallet emptyWallet = new Wallet(money);
+		return walletRepository.save(emptyWallet);
+	}
+	
+	@Transactional(propagation = Propagation.NEVER)
+	public Wallet createWalletV7(BigDecimal money) {
 		Wallet emptyWallet = new Wallet(money);
 		return walletRepository.save(emptyWallet);
 	}

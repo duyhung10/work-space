@@ -64,7 +64,7 @@ public class PersonService {
 	}
 
 	@Transactional
-	public long createPerson(String name, BigDecimal money) {
+	public long createPersonV4(String name, BigDecimal money) {
 		Person person = new Person(name);
 		personRepository.save(person);
 
@@ -72,10 +72,64 @@ public class PersonService {
 		if (wallet.getAmount().compareTo(BigDecimal.ZERO) < 0) {
 			throw new RuntimeException("Initial amount of money cannot be less than zero");
 		}
-		
-		System.out.println("Day la 1 dong test");
-		
+
+		System.out.println("Dong nay se hien thi neu khong gap Exception");
 		person.setWallet(wallet);
+
+		return person.getId();
+	}
+
+//	@Transactional
+	public long createPersonV5(String name, BigDecimal money) {
+		Person person = new Person(name);
+		personRepository.save(person);
+
+		try {
+			Wallet wallet = walletService.createWalletV5(money);
+			if (wallet.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+				throw new RuntimeException("Initial amount of money cannot be less than zero");
+			}
+			
+			person.setWallet(wallet);
+		} catch (Exception e) {
+			System.out.println("Exeption: " + e.getMessage());
+		}
+
+		return person.getId();
+	}
+	
+	@Transactional
+	public long createPersonV6(String name, BigDecimal money) {
+		Person person = new Person(name);
+		personRepository.save(person);
+
+		
+		Wallet wallet = walletService.createWalletV5(money);
+		if (wallet.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+			throw new RuntimeException("Initial amount of money cannot be less than zero");
+		}
+		
+		System.out.println("test hien thi");
+		person.setWallet(wallet);
+
+		return person.getId();
+	}
+	
+//	@Transactional
+	public long createPersonV7(String name, BigDecimal money) {
+		Person person = new Person(name);
+		personRepository.save(person);
+
+		try {
+			Wallet wallet = walletService.createWalletV7(money);
+			if (wallet.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+				throw new RuntimeException("Initial amount of money cannot be less than zero");
+			}
+			
+			person.setWallet(wallet);
+		} catch (Exception e) {
+			System.out.println("Exeption: " + e.getMessage());
+		}
 
 		return person.getId();
 	}
