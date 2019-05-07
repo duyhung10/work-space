@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import demo.entity.Person;
@@ -25,10 +26,11 @@ public class PersonService {
 		this.walletRepository = walletRepository;
 	}
 
-	@Transactional
-	public long createPerson(String name) {
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public Person createPerson(String name) {
 		Person person = new Person(name);
-		personRepository.save(person);
-		return person.getId();
+		Person personDB = personRepository.save(person);
+		System.out.println("Create Person with name = " + personDB.getName());
+		return person;
 	}
 }

@@ -23,8 +23,7 @@ public class PersonServiceV1Test {
     @Test
     public void shouldCreatePersonWithEmptyWallet() {
         // when
-    	Person samy = testService.CreatePersonFullInfo("Ironman", BigDecimal.valueOf(-4882.0D));
-    	System.out.println(testService.getInfoPerson(samy.getId()));
+		testService.CreatePersonAndWallet("Ironman", BigDecimal.valueOf(-82.0D));
     }
 
 }

@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import demo.entity.Person;
@@ -16,27 +17,27 @@ import demo.repository.WalletRepository;
 public class WalletService {
 
 	private final WalletRepository walletRepository;
-	private final PersonRepository personRepository;
 
 	@Autowired
-	public WalletService(WalletRepository walletRepository, PersonRepository personRepository) {
+	public WalletService(WalletRepository walletRepository) {
 		this.walletRepository = walletRepository;
-		this.personRepository = personRepository;
 	}
 	
-	@Transactional
-	public Wallet createWalletAttachToPerson(long personId, BigDecimal money) {
+//	@Transactional(propagation = Propagation.REQUIRED)
+//	@Transactional(propagation = Propagation.REQUIRES_NEW)
+//	@Transactional(propagation = Propagation.MANDATORY)
+	@Transactional(propagation = Propagation.NEVER)
+//	@Transactional(propagation = Propagation.SUPPORTS)
+//	@Transactional(propagation = Propagation.NOT_SUPPORTED)
+	public Wallet createWallet(BigDecimal money) throws RuntimeException {
 		Wallet wallet = new Wallet(money);
-		walletRepository.save(wallet);
+		Wallet walletDB = walletRepository.save(wallet);
+		System.out.println("Create wallet with amount = " + walletDB.getAmount());
 		
-		Wallet walletDb = walletRepository.findById(wallet.getId()).orElse(null);
-		if (walletDb.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+		if (wallet.getAmount().compareTo(BigDecimal.ZERO) < 0) {
 			throw new RuntimeException("Initial amount of money cannot be less than zero");
 		}
 		
-		Person person = personRepository.findById(personId).orElseThrow(null);
-		person.setWallet(wallet);
-
 		return wallet;
 	}
 
