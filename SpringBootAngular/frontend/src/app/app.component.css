@@ -1,0 +1,13 @@
+.header {
+    margin-bottom: 10px;
+}
+
+.nav-custom {
+    text-align: right;
+}
+.btn-login {
+    background: rgb(187, 157, 218)
+}
+.btn-logout {
+    background: rgb(104, 150, 161)
+}

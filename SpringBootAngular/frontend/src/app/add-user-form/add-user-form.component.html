@@ -1,0 +1,100 @@
+<div class="container">
+    <form [formGroup]="formAddUser" (submit)="onSubmitAdd()">
+        <mat-card>
+            <mat-card-title>Thông tin cá nhân</mat-card-title>
+            <mat-divider style="margin-bottom: 10px;"></mat-divider>
+    
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <input matInput placeholder="Họ và tên" formControlName="name"/>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['name']" [name-control]="'Họ tên'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="birthday">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['birthday']" [name-control]="'Ngày sinh'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <section class="radio-field">
+                            <label>Giới tính: </label>
+                            <mat-radio-group formControlName="sex">
+                                <mat-radio-button class="radio-button-custom" value="male">Nam</mat-radio-button>
+                                <mat-radio-button class="radio-button-custom" value="female">Nữ</mat-radio-button>
+                            </mat-radio-group>
+                        </section>
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <span matPrefix>+0 &nbsp;</span>
+                            <input type="tel" matInput placeholder="Số điện thoại" formControlName="numberphone"/>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['numberphone']" [name-control]="'Số điện thoại'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card>
+            <mat-card-title>Thông tin tài khoản</mat-card-title>
+            <mat-divider style="margin-bottom: 10px;"></mat-divider>
+    
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <input matInput placeholder="Tên đăng nhập" formControlName="username"/>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['username']" [name-control]="'Tên đăng nhập'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <input matInput placeholder="Email" formControlName="email"/>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['email']" [name-control]="'Email'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <input matInput placeholder="Mật khẩu" formControlName="password" (input)="setPasswordTemp()"/>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['password']" [name-control]="'Password'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <input matInput placeholder="Nhắc lại mật khẩu" formControlName="confirmpassword"/>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['confirmpassword']" [name-control]="'Confirmpassword'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+                    
+                </div>
+            </mat-card-content>
+
+            <div class="button-field">
+                <button class="button-custom-goback" mat-raised-button type="button" (click)="onGoBack()" >Quay lại</button>
+                <button class="button-custom" mat-raised-button (click)="onFormReset()" >Xóa hết</button>
+                <button class="button-custom" mat-raised-button color="primary" type="submit" [disabled]="formAddUser.invalid">Xác nhận</button>
+            </div>
+        </mat-card>
+    </form>
+</div>

@@ -26,9 +26,9 @@ public class WalletService {
 //	@Transactional(propagation = Propagation.REQUIRED)
 //	@Transactional(propagation = Propagation.REQUIRES_NEW)
 //	@Transactional(propagation = Propagation.MANDATORY)
-	@Transactional(propagation = Propagation.NEVER)
+//	@Transactional(propagation = Propagation.NEVER)
 //	@Transactional(propagation = Propagation.SUPPORTS)
-//	@Transactional(propagation = Propagation.NOT_SUPPORTED)
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public Wallet createWallet(BigDecimal money) throws RuntimeException {
 		Wallet wallet = new Wallet(money);
 		Wallet walletDB = walletRepository.save(wallet);

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4" ></div>
+        <div class="col-xs-12 col-sm-12 col-md-4" >
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" #searchBox (input)="search(searchBox.value)">
+            <mat-chip-list *ngFor="let employee of employee$ | async">
+                <mat-chip (click)="selectedEmployee(employee)" class="matchip-cus"> 
+                    <span>{{employee.name}}</span>
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4" ></div>
+    </div>
+</div>

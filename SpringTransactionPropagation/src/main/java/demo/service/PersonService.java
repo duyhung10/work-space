@@ -26,7 +26,7 @@ public class PersonService {
 		this.walletRepository = walletRepository;
 	}
 
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public Person createPerson(String name) {
 		Person person = new Person(name);
 		Person personDB = personRepository.save(person);
