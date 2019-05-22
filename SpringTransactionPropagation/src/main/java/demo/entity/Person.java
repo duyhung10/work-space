@@ -15,19 +15,12 @@ public class Person {
 
     private String name;
     
-    @OneToOne()
-    private Wallet wallet;
-
+    
     protected Person() {
     }
 
     public Person(String name) {
         this.name = name;
-    }
-
-    public Person(String name, Wallet wallet) {
-        this.name = name;
-        this.wallet = wallet;
     }
 
     public String getName() {
@@ -44,14 +37,6 @@ public class Person {
 
 	public Long getId() {
         return id;
-    }
-
-    public Wallet getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
     }
 
 }
