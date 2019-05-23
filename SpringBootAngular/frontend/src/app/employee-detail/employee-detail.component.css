@@ -1,0 +1,7 @@
+table, th, td {
+    border: 1px solid #E6E6E6;
+    border-collapse: collapse;
+}
+.button-field{
+    margin-bottom: 10px;
+}

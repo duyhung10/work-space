@@ -1,0 +1,6 @@
+<h2 *ngIf="error" >Sai pass or username</h2>
+<h2>Login</h2>
+<input #username /><br>
+<input #password /><br>
+
+<button (click)="onLogin(username.value, password.value)">Login</button>

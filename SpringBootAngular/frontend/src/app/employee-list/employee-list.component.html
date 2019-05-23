@@ -1,0 +1,43 @@
+<div>
+    <div style="text-align: center">
+        <app-employee-search (mySelect)="onShowEmployeeDetail($event)" ></app-employee-search>
+    </div>
+    
+    <div style="text-align: right; margin-top: 10px;">
+        <button mat-raised-button class="btn-router" [routerLink]="['/employee/add']" >Add new employee</button>
+    </div>
+
+
+    <table class="table" style="margin-top: 10px">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col" class="d-none d-sm-none d-md-table-cell">Giới tính</th>
+                <th scope="col" class="d-none d-sm-none d-md-table-cell">Ngày sinh</th>
+                <th scope="col" class="d-none d-sm-none d-md-table-cell">Số điện thoại</th>
+                <th scope="col">Email</th>
+                
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employeeList, let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td >
+                    <span (click)="onShowEmployeeDetail(employee)">{{ employee.name }}</span>
+                </td>
+                <td class="d-none d-sm-none d-md-table-cell">{{ (employee.sex == 'male') ? "Nam" : "Nữ" }}</td>
+                <td class="d-none d-sm-none d-md-table-cell">{{ employee.birthday }}</td>
+                <td class="d-none d-sm-none d-md-table-cell">{{ employee.numberPhone }}</td>
+                <td>{{ employee.email }}</td>
+                <td>
+                    <div class="btn-field">
+                        <button mat-raised-button class="btn-action btn-more" (click)="onShowEmployeeDetail(employee)">More</button>
+                        <button mat-raised-button class="btn-action" color="warn" (click)="onDeleteEmployee(employee.id)">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

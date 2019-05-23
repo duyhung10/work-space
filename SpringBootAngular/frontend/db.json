@@ -1,0 +1,34 @@
+{
+  "employees": [
+    {
+      "id": 2,
+      "name": "Nguyễn Thị Buowir tt",
+      "birthday": "04/10/1997",
+      "sex": "female",
+      "numberphone": "02412823111",
+      "email": "nguyenth@gmail.com",
+      "username": "nguyenth",
+      "password": "123456"
+    },
+    {
+      "name": "abcd",
+      "birthday": "Wed Apr 17 2019",
+      "sex": "male",
+      "numberphone": "54645456",
+      "username": "asds",
+      "password": "add",
+      "email": "asdasd",
+      "id": 3
+    },
+    {
+      "name": "Lê Hồng Quân",
+      "birthday": "Fri Apr 26 2019",
+      "sex": "male",
+      "numberphone": "213213",
+      "username": "",
+      "password": "",
+      "email": "ádasdasdas",
+      "id": 4
+    }
+  ]
+}

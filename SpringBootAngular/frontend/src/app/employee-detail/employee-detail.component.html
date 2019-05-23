@@ -1,0 +1,82 @@
+<div class="button-field">
+    <div class="row">
+        <div  class="col-xs-6 col-sm-6" style="text-align: left">
+            <button *ngIf="!isShowDefault" mat-raised-button color="primary" (click)="onClickEdit()"> Sửa</button>
+        </div>
+        <div class="col-xs-6 col-sm-6" style="text-align: right">
+            <mat-icon (click)="onNoClick()">cancel</mat-icon>
+        </div>
+    </div>
+</div>
+<mat-card>
+    <mat-card-title style="text-align: center"><strong>Thông tin chi tiết</strong></mat-card-title>
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+        <table class="table" style="margin-top: 10px">
+            <tr>
+                <td scope="col">Họ tên</td>
+                <td>
+                    <span *ngIf="!isShowDefault">
+                        {{currentEmployee.name}}
+                    </span>
+                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.name">
+                </td> 
+            </tr>
+            <tr>
+                <td scope="col">Giới tính</td>
+                <td>
+                    {{(currentEmployee.sex == 'male') ? "Nam" : "Nữ" }}
+                </td> 
+            </tr>
+            <tr>
+                <td scope="col">Ngày sinh</td>
+                <td>
+                    <span *ngIf="!isShowDefault">
+                        {{currentEmployee.birthday}}
+                    </span>
+                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.birthday">
+                </td> 
+            </tr>
+            <tr>
+                <td scope="col">Số điện thoại</td>
+                <td>
+                    <span *ngIf="!isShowDefault">
+                        {{currentEmployee.numberphone}}
+                    </span>
+                    <input *ngIf="isShowDefault" type="tel" [(ngModel)]="currentEmployee.numberphone">
+                </td> 
+            </tr>
+            <tr>
+                <td scope="col">Email</td>
+                <td>
+                    <span *ngIf="!isShowDefault">
+                        {{currentEmployee.email}}
+                    </span>
+                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.email">
+                </td> 
+            </tr>
+            <tr>
+                <td scope="col">Tên đăng nhập</td>
+                <td>
+                    <span *ngIf="!isShowDefault">
+                        {{currentEmployee.username}}
+                    </span>
+                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.username">
+                </td>
+            </tr>
+            <tr>
+                <td scope="col">Mật khẩu</td>
+                <td>
+                    <span *ngIf="!isShowDefault">
+                        {{currentEmployee.password}}
+                    </span>
+                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.password">
+                </td> 
+            </tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+<div  style="text-align: right; margin-top: 10px">
+    <button *ngIf="isShowDefault" mat-raised-button color="primary" (click)="onClickConfirm()">Xác nhận</button>
+</div>
