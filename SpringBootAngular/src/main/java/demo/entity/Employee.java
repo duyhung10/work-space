@@ -1,39 +1,32 @@
 package demo.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "employee")
 public class Employee {
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name = "name")
+
 	private String name;
-	
-	@Column(name = "birthday")
+
 	private String birthday;
-	
-	@Column(name = "sex")
+
 	private String sex;
-	
-	@Column(name = "number_phone")
+
 	private String numberPhone;
-	
-	@Column(name = "email")
+
+	@OneToOne
+	private Department department;
+
 	private String email;
-	
-	@Column(name = "username")
+
 	private String username;
-	
-	@Column(name = "password")
+
 	private String password;
 
 	public int getId() {
@@ -82,6 +75,14 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public String getUsername() {

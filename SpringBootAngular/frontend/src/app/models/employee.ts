@@ -1,3 +1,5 @@
+import { Department } from './department';
+
 export class Employee {
     public id: number;
     public name: string;
@@ -5,6 +7,7 @@ export class Employee {
     public sex: string;
     public numberPhone: string;
     public email: string;
+    public department: Department;
     public username: string;
     public password: string;
 }
