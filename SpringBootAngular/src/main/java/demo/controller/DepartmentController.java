@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.entity.Department;
+import demo.model.DepartmentDTO;
 import demo.service.DepartmentService;
 
 
@@ -31,5 +32,10 @@ public class DepartmentController {
 	public Department findById(@PathVariable int id) {
 		return departmentService.findById(id);
 	}
-
+	
+	// Get All Department full info
+	@GetMapping("/departments/full-info")
+	public List<DepartmentDTO> getFullInfoDepartmet() {
+		return departmentService.getFullInfoDepartmet();
+	}
 }

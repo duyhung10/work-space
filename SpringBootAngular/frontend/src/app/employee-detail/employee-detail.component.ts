@@ -20,7 +20,8 @@ export class EmployeeDetailComponent implements OnInit {
     private location: Location,
     private employeeService: EmployeeService,
     private dialogRef: MatDialogRef<EmployeeDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ) {}
  
   ngOnInit() {
     this.currentEmployee = this.data.empl;

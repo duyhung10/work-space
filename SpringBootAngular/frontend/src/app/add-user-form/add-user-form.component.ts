@@ -6,6 +6,9 @@ import { Employee } from '../models/employee';
 import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Department } from '../models/department';
+import { DepartmentDTO } from '../models/departmentDTO';
+import { DepartmentService } from '../services/department.service';
 
 
 var passwordTemp: string;
@@ -20,22 +23,34 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
 
   public employee: Employee;
-  public club = [];
+  public departmentTemp: Department;
+  public departments: Department[];
+  public departmentDTOs: DepartmentDTO[];
 
   formAddUser: FormGroup;
 
   constructor(
     public _formBuilder: FormBuilder,
     public employeeService: EmployeeService,
+    public departmentService: DepartmentService,
     public router: Router,
-    public location: Location
+    public location: Location    
     ) {
     this.employee = new Employee();
+    this.departmentTemp = new Department();
   }
   
   
   ngOnInit() {
     this.createForm();
+    this.subscription = this.departmentService.getAllDepartment().subscribe((data: Department[]) => {
+      this.departments = data;
+    });
+
+    this.subscription = this.departmentService.getAllDepartmentFullInfo().subscribe((data: DepartmentDTO[]) => {
+      this.departmentDTOs = data;
+      console.log(this.departmentDTOs);
+    });
 
   }
   
@@ -51,6 +66,7 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
       birthday: ['', Validators.required],
       sex: [''],
       numberphone: ['', [Validators.required, Validators.pattern('[0-9]{9}')]],
+      department: ['', Validators.required],
       username: ['', [
         Validators.required,
         Validators.minLength(5),
@@ -70,8 +86,8 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
   onSubmitAdd(){
     this.createNewEmployee();
     this.subscription = this.employeeService.addNewEmployee(this.employee).subscribe(data => {
-      alert('Thêm nhân viên thành công');
       this.router.navigate(['employee']);
+      alert('Thêm nhân viên thành công');
     });
   }
 
@@ -83,6 +99,8 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
     this.employee.username = this.formAddUser.controls['username'].value;
     this.employee.password = this.formAddUser.controls['password'].value;
     this.employee.email = this.formAddUser.controls['email'].value;
+    this.departmentTemp.id = this.formAddUser.controls['department'].value;
+    this.employee.department = this.departmentTemp; 
   }
 
   dateFormat(date: Date){

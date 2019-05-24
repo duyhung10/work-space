@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="formAddUser" (submit)="onSubmitAdd()">
+    <form [formGroup]="formAddUser"s>
         <mat-card>
             <mat-card-title>Thông tin cá nhân</mat-card-title>
             <mat-divider style="margin-bottom: 10px;"></mat-divider>
@@ -41,6 +41,17 @@
                         </mat-form-field>
                         <mat-error>
                             <app-error-validate [control]="formAddUser.controls['numberphone']" [name-control]="'Số điện thoại'" ></app-error-validate>
+                        </mat-error>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <mat-form-field class="form-field-control">
+                            <mat-label>Phòng ban</mat-label>
+                            <mat-select formControlName="department">
+                                <mat-option *ngFor="let department of departments" value={{department.id}}>{{department.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-error>
+                            <app-error-validate [control]="formAddUser.controls['department']" [name-control]="'Phòng ban'" ></app-error-validate>
                         </mat-error>
                     </div>
                 </div>
@@ -93,8 +104,26 @@
             <div class="button-field">
                 <button class="button-custom-goback" mat-raised-button type="button" (click)="onGoBack()" >Quay lại</button>
                 <button class="button-custom" mat-raised-button (click)="onFormReset()" >Xóa hết</button>
-                <button class="button-custom" mat-raised-button color="primary" type="submit" [disabled]="formAddUser.invalid">Xác nhận</button>
+                <button class="button-custom" mat-raised-button color="primary" type="submit" [disabled]="formAddUser.invalid" (click)="onSubmitAdd()">Xác nhận</button>
             </div>
         </mat-card>
     </form>
 </div>
+
+<table class="table" style="margin-top: 10px">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ten</th>
+            <th scope="col">So luong</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let departmentDTO of departmentDTOs, let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ departmentDTO.name }}</td>
+            <td>{{ departmentDTO.amount }}</td>
+           
+        </tr>
+    </tbody>
+</table>
