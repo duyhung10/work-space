@@ -25,7 +25,8 @@ export class EmployeeService {
   }
   
   updateEmployee(employee: Employee) {
-    return this.http.put(`${this.API}/${employee.id}`, employee);
+    // return this.http.put(`${this.API}/${employee.id}`, employee);
+    return this.http.put(this.API, employee);
   }
 
   searchEmployees(term: string): Observable<Employee[]> {

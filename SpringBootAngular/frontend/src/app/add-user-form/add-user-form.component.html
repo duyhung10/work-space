@@ -72,7 +72,7 @@
 
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <mat-form-field class="form-field-control">
-                            <input matInput placeholder="Mật khẩu" formControlName="password" (input)="setPasswordTemp()"/>
+                            <input type="password" matInput placeholder="Mật khẩu" formControlName="password" (input)="setPasswordTemp()"/>
                         </mat-form-field>
                         <mat-error>
                             <app-error-validate [control]="formAddUser.controls['password']" [name-control]="'Password'" ></app-error-validate>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <mat-form-field class="form-field-control">
-                            <input matInput placeholder="Nhắc lại mật khẩu" formControlName="confirmpassword"/>
+                            <input type="password" matInput placeholder="Nhắc lại mật khẩu" formControlName="confirmpassword"/>
                         </mat-form-field>
                         <mat-error>
                             <app-error-validate [control]="formAddUser.controls['confirmpassword']" [name-control]="'Confirmpassword'" ></app-error-validate>
