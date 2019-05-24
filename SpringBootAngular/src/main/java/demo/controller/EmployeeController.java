@@ -21,6 +21,7 @@ import demo.service.EmployeeService;
 @RequestMapping("/api")
 @CrossOrigin(origins="http://localhost:4200")
 public class EmployeeController {
+	
 	@Autowired
 	EmployeeService employeeService;
 

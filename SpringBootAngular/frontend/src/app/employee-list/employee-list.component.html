@@ -16,6 +16,7 @@
                 <th scope="col" class="d-none d-sm-none d-md-table-cell">Giới tính</th>
                 <th scope="col" class="d-none d-sm-none d-md-table-cell">Ngày sinh</th>
                 <th scope="col" class="d-none d-sm-none d-md-table-cell">Số điện thoại</th>
+                <th scope="col">Phòng ban</th>
                 <th scope="col">Email</th>
                 
                 <th scope="col"></th>
@@ -30,6 +31,7 @@
                 <td class="d-none d-sm-none d-md-table-cell">{{ (employee.sex == 'male') ? "Nam" : "Nữ" }}</td>
                 <td class="d-none d-sm-none d-md-table-cell">{{ employee.birthday }}</td>
                 <td class="d-none d-sm-none d-md-table-cell">{{ employee.numberPhone }}</td>
+                <td>{{ employee.department.name }}</td>
                 <td>{{ employee.email }}</td>
                 <td>
                     <div class="btn-field">
