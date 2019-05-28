@@ -1,0 +1,40 @@
+<div class="container">
+  <mat-card>
+      <div style="text-align: center">
+          <mat-card-title class="title">Danh sách sinh viên</mat-card-title>
+      </div>
+      <mat-divider style="margin-bottom: 10px;"></mat-divider>
+
+      <mat-card-content>
+          <div style="text-align: right; margin-top: 20px;">
+              <button mat-raised-button class="btn-router" [routerLink]="['/students/create']" >Add new student</button>
+          </div>
+
+          <table class="table" style="margin-top: 10px">
+              <thead class="thead-light">
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Họ tên</th>
+                      <th scope="col">Email</th>
+                      <th scope="col"></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let student of students, let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td >
+                          <a>{{ student.name }}</a>
+                      </td>
+                      <td >{{ student.email }}</td>
+                      <td>
+                          <div class="btn-field">
+                              <button mat-raised-button class="btn-action btn-more" >More</button>
+                              <button mat-raised-button class="btn-action" color="warn">Delete</button>
+                          </div>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </mat-card-content>
+  </mat-card>
+</div>

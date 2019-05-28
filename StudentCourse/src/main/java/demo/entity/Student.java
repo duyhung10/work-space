@@ -24,10 +24,9 @@ public class Student {
 	private String email;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "student", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Enrolment> enrolments;
 
-	
 	public Student() {
     }
 

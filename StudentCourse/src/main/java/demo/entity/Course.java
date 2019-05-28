@@ -3,6 +3,7 @@ package demo.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Course {
 	private int fee;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "course")
+	@OneToMany(mappedBy = "course", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Enrolment> enrolments;
 
 	

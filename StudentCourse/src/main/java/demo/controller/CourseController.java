@@ -17,37 +17,37 @@ import demo.entity.Course;
 import demo.service.CourseService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/courses")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CourseController {
 	@Autowired
 	CourseService courseService;
 
 	// Get All Course
-	@GetMapping("/courses")
+	@GetMapping
 	public List<Course> findAllCourse() {
 		return courseService.getAll();
 	}
 
 	// Get Course by Id
-	@GetMapping("/courses/{id}")
+	@GetMapping("/{id}")
 	public Course findById(@PathVariable int id) {
 		return courseService.findById(id);
 	}
 
 	// Create new course
-	@PostMapping("/courses")
+	@PostMapping
 	public Course create(@RequestBody Course course) {
 		return courseService.create(course);
 	}
 
 	// Update course
-	@PutMapping("/courses/{id}")
+	@PutMapping("/{id}")
 	public Course update(@RequestBody Course course, @PathVariable int id) {
 		return courseService.update(course);
 	}
 
-	@DeleteMapping("/courses/{id}")
+	@DeleteMapping("/{id}")
 	public void detele(@PathVariable int id) {
 		courseService.delete(id);
 	}
