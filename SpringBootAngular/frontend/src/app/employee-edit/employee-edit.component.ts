@@ -53,7 +53,11 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
 
 
   onSubmitEdit(){
-    console.log(this.employee);
+    this.subscription = this.employeeService.updateEmployee(this.employee).subscribe(data => {
+      console.log(this.employee);
+      alert("Cap nhat nhan vien thanh cong");
+      this.router.navigateByUrl('/employees/' + this.employee.id + "/detail");
+    });
   }
  
   dateFormat(date: Date){
