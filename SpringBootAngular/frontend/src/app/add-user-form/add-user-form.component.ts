@@ -7,7 +7,6 @@ import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Department } from '../models/department';
-import { DepartmentDTO } from '../models/departmentDTO';
 import { DepartmentService } from '../services/department.service';
 
 
@@ -25,7 +24,6 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
   public employee: Employee;
   public departmentTemp: Department;
   public departments: Department[];
-  public departmentDTOs: DepartmentDTO[];
 
   formAddUser: FormGroup;
 
@@ -46,12 +44,6 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
     this.subscription = this.departmentService.getAllDepartment().subscribe((data: Department[]) => {
       this.departments = data;
     });
-
-    this.subscription = this.departmentService.getAllDepartmentFullInfo().subscribe((data: DepartmentDTO[]) => {
-      this.departmentDTOs = data;
-      console.log(this.departmentDTOs);
-    });
-
   }
   
   ngOnDestroy(): void {
@@ -86,7 +78,7 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
   onSubmitAdd(){
     this.createNewEmployee();
     this.subscription = this.employeeService.addNewEmployee(this.employee).subscribe(data => {
-      this.router.navigate(['employee']);
+      this.router.navigate(['employees']);
       alert('Thêm nhân viên thành công');
     });
   }

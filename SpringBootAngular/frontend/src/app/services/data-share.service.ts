@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class DataShareService {
   private data: Subject<any> = new Subject();
   
+
   constructor() { }
 
   public getData(){
@@ -16,4 +17,5 @@ export class DataShareService {
   public sendData(value){
     this.data.next(value);
   }
+
 }

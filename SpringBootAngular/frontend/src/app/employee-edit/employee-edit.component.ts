@@ -1,25 +1,29 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Employee } from '../models/employee';
-import { EmployeeService } from '../services/employee.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
+import { Employee } from '../models/employee';
+import { Router, ActivatedRoute } from '@angular/router';
+import { EmployeeService } from '../services/employee.service';
 import { Department } from '../models/department';
+import { DepartmentService } from '../services/department.service';
 
 @Component({
-  selector: 'app-employee-detail',
-  templateUrl: './employee-detail.component.html',
-  styleUrls: ['./employee-detail.component.css']
+  selector: 'app-employee-edit',
+  templateUrl: './employee-edit.component.html',
+  styleUrls: ['./employee-edit.component.css']
 })
-export class EmployeeDetailComponent implements OnInit, OnDestroy {
+export class EmployeeEditComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
   public employee: Employee;
-  
+  public departments: Department[];
+
+
   constructor(
     private router: Router,
     private location: Location,
     private employeeService: EmployeeService,
+    public departmentService: DepartmentService,
     private activatedRouteService: ActivatedRoute
     ) {}
  
@@ -27,6 +31,10 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
     this.employee = new Employee;
     this.employee.department = new Department;
     this.loadData();
+
+    this.subscription = this.departmentService.getAllDepartment().subscribe((data: Department[]) => {
+      this.departments = data;
+    });
   }
   ngOnDestroy(): void {
     if(this.subscription) {
@@ -43,7 +51,19 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  onSubmitEdit(){
+    console.log(this.employee);
+  }
+ 
+  dateFormat(date: Date){
+    let dateString = date.toDateString();
+    return dateString;
+  }
+
   onBack(){
     this.location.back();
   }
+
+  
 }

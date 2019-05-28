@@ -36,6 +36,10 @@ export class AppComponent implements OnInit, OnDestroy{
     if(sessionStorage.getItem('user')){
       sessionStorage.removeItem('user');
     }
+
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   onLogout(){
@@ -44,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy{
       this.router.navigate(['/home/login']);
       this.isLogin = false;
     }
+
   }
 
 }

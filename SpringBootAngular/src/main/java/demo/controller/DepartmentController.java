@@ -35,7 +35,7 @@ public class DepartmentController {
 	
 	// Get All Department full info
 	@GetMapping("/departments/full-info")
-	public List<DepartmentDTO> getFullInfoDepartmet() {
-		return departmentService.getFullInfoDepartmet();
+	public List<DepartmentDTO> getFullInfoDepartment() {
+		return departmentService.getFullInfoDepartment();
 	}
 }

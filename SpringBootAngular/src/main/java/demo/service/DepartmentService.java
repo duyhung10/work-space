@@ -28,7 +28,7 @@ public class DepartmentService {
 		return departmentRepository.findById(id).orElse(null);
 	}
 	
-	public List<DepartmentDTO> getFullInfoDepartmet() {
+	public List<DepartmentDTO> getFullInfoDepartment() {
 		String query = "SELECT d.*, temp.amount \n" + 
 				"FROM human_resources.department d\n" + 
 				"left join\n" + 
@@ -40,6 +40,5 @@ public class DepartmentService {
 		Query q = entityManager.createNativeQuery(query);
         
 		return q.getResultList();
-		
 	}
 }

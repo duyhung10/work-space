@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="formAddUser"s>
+    <form [formGroup]="formAddUser">
         <mat-card>
             <mat-card-title>Thông tin cá nhân</mat-card-title>
             <mat-divider style="margin-bottom: 10px;"></mat-divider>
@@ -109,21 +109,3 @@
         </mat-card>
     </form>
 </div>
-
-<table class="table" style="margin-top: 10px">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Ten</th>
-            <th scope="col">So luong</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let departmentDTO of departmentDTOs, let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>{{ departmentDTO.name }}</td>
-            <td>{{ departmentDTO.amount }}</td>
-           
-        </tr>
-    </tbody>
-</table>

@@ -1,82 +1,69 @@
-<div class="button-field">
-    <div class="row">
-        <div  class="col-xs-6 col-sm-6" style="text-align: left">
-            <button *ngIf="!isShowDefault" mat-raised-button color="primary" (click)="onClickEdit()"> Sửa</button>
-        </div>
-        <div class="col-xs-6 col-sm-6" style="text-align: right">
-            <mat-icon (click)="onNoClick()">cancel</mat-icon>
-        </div>
-    </div>
-</div>
-<mat-card>
-    <mat-card-title style="text-align: center"><strong>Thông tin chi tiết</strong></mat-card-title>
-    <mat-divider></mat-divider>
+<div class="container">
+    <mat-card>
+        <mat-card-title><b>Thông tin cá nhân</b></mat-card-title>
+        <mat-divider style="margin-bottom: 10px;"></mat-divider>
 
-    <mat-card-content>
-        <table class="table" style="margin-top: 10px">
-            <tr>
-                <td scope="col">Họ tên</td>
-                <td>
-                    <span *ngIf="!isShowDefault">
-                        {{currentEmployee.name}}
-                    </span>
-                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.name">
-                </td> 
-            </tr>
-            <tr>
-                <td scope="col">Giới tính</td>
-                <td>
-                    {{(currentEmployee.sex == 'male') ? "Nam" : "Nữ" }}
-                </td> 
-            </tr>
-            <tr>
-                <td scope="col">Ngày sinh</td>
-                <td>
-                    <span *ngIf="!isShowDefault">
-                        {{currentEmployee.birthday}}
-                    </span>
-                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.birthday">
-                </td> 
-            </tr>
-            <tr>
-                <td scope="col">Số điện thoại</td>
-                <td>
-                    <span *ngIf="!isShowDefault">
-                        {{currentEmployee.numberPhone}}
-                    </span>
-                    <input *ngIf="isShowDefault" type="tel" [(ngModel)]="currentEmployee.numberPhone">
-                </td> 
-            </tr>
-            <tr>
-                <td scope="col">Email</td>
-                <td>
-                    <span *ngIf="!isShowDefault">
-                        {{currentEmployee.email}}
-                    </span>
-                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.email">
-                </td> 
-            </tr>
-            <tr>
-                <td scope="col">Tên đăng nhập</td>
-                <td>
-                    <span *ngIf="!isShowDefault">
-                        {{currentEmployee.username}}
-                    </span>
-                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.username">
-                </td>
-            </tr>
-            <tr>
-                <td scope="col">Mật khẩu</td>
-                <td>
-                    <span *ngIf="!isShowDefault">
-                        {{currentEmployee.password}}
-                    </span>
-                    <input *ngIf="isShowDefault" type="text" [(ngModel)]="currentEmployee.password">
-                </td> 
-            </tr>
-        </table>
-    </mat-card-content>
-</mat-card>
-<div  style="text-align: right; margin-top: 10px">
-    <button *ngIf="isShowDefault" mat-raised-button color="primary" (click)="onClickConfirm()">Xác nhận</button>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <label>Họ tên: </label><span> {{employee.name}}</span> 
+                    <br/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <label>Ngày sinh:</label><span> {{employee.birthday}}</span>
+                    <br/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <label>Giới tính:</label><span> {{ (employee.sex == 'male') ? "Nam" : "Nữ" }}</span>
+                    <br/>
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <label>Số điện thoại:</label><span> {{employee.numberPhone}}</span>
+                    <br/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <a [routerLink]="['/departments']"><label>Phòng ban:</label></a><span> {{employee.department.name}}</span>
+                    
+                    <br/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <label>Email:</label><span> {{employee.email}}</span>
+                    <br/>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title><b>Thông tin tài khoản</b></mat-card-title>
+        <mat-divider style="margin-bottom: 10px;"></mat-divider>
+
+        <mat-card-content>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <label>Tên đăng nhập:</label><span> {{employee.username}}</span>
+                    <br/>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <br/>
+                    <label>Mật khẩu:</label><span> {{employee.password}}</span>
+                    <br/>
+                </div>
+            </div>
+        </mat-card-content>
+
+        <div class="button-field">
+            <button class="button-custom-goback" mat-raised-button type="button" (click)="onBack()">Back</button>
+            <button class="button-custom" mat-raised-button color="primary" [routerLink]="['/employees', employee.id, 'edit']">Edit</button>
+        </div>
+    </mat-card>
 </div>

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
     if(username == 'admin' && password =='admin'){
       sessionStorage.setItem('user', JSON.stringify(user));
-      this.router.navigate(['employee']);
+      this.router.navigate(['employees']);
 
       this.dataShareService.sendData(true);
 

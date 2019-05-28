@@ -1,0 +1,30 @@
+<div class="container">
+  <mat-card>
+    <div style="text-align: center">
+      <mat-card-title class="title">Danh sách phòng ban</mat-card-title>
+    </div>
+    <mat-divider style="margin-bottom: 10px;"></mat-divider>
+
+    <mat-card-content>
+      <table class="table" style="margin-top: 20px">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên phòng ban</th>
+            <th scope="col">Số lượng nhân viên</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let departmentDTO of departmentDTOs, let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ departmentDTO[1] }}</td>
+            <td><b>{{ departmentDTO[2] != null ? departmentDTO[2] : '0' }}</b> người</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+    <div class="button-field">
+      <button class="button-custom-goback" mat-raised-button type="button" (click)="onBack()">Back</button>
+    </div>
+   </mat-card>
+</div>

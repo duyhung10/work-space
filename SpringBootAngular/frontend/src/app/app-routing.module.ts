@@ -7,6 +7,9 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { AuthGuard } from './services/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { DepartmentListComponent } from './department-list/department-list.component';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 
 const routes: Routes = [
   { 
@@ -14,7 +17,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   { 
-    path: 'employee', 
+    path: 'employees', 
     component: EmployeeComponent,
     canActivate: [AuthGuard],
     children: [
@@ -23,8 +26,16 @@ const routes: Routes = [
         component: EmployeeListComponent,
       },
       { 
-        path: "add",
+        path: 'add',
         component: AddUserFormComponent
+      },
+      {
+        path: ':id/detail',
+        component: EmployeeDetailComponent
+      },
+      {
+        path: ':id/edit',
+        component: EmployeeEditComponent
       }
     ]
   },
@@ -37,6 +48,11 @@ const routes: Routes = [
         component: LoginComponent
       }
     ]
+  },
+  { 
+    path: 'departments', 
+    component: DepartmentListComponent,
+    canActivate: [AuthGuard],
   }
 ];
 

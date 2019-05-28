@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // add-user-form
@@ -35,6 +36,8 @@ import { ErrorValidateComponent } from './error-validate/error-validate.componen
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { EmployeeSearchComponent } from './employee-search/employee-search.component';
 import { LoginComponent } from './login/login.component';
+import { DepartmentListComponent } from './department-list/department-list.component';
+import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { LoginComponent } from './login/login.component';
     EmployeeDetailComponent,
     EmployeeSearchComponent,
     LoginComponent,
+    DepartmentListComponent,
+    EmployeeEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,7 @@ import { LoginComponent } from './login/login.component';
     MatCheckboxModule,
     MatButtonModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
   ],
   providers: [],
   entryComponents: [EmployeeDetailComponent],

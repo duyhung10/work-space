@@ -1,0 +1,10 @@
+th, td {
+    font-size: 18px;
+}
+.title {
+    font-size: 28px;
+}
+.button-field{
+    margin-bottom: 10px;
+    text-align: left;
+}

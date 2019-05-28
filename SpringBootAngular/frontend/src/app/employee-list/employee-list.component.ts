@@ -2,8 +2,7 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
 import { Employee } from '../models/employee';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material';
-import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,8 +15,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
 
   constructor(
+    private router: Router,
     public employeeService: EmployeeService,
-    private dialog?: MatDialog
   ) { }
   
   ngOnInit() {
@@ -37,14 +36,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.subscription = this.employeeService.deleteEmployee(id).subscribe(data => {
       // Gọi lại OnInit để cập nhật lại danh sách employee,
       this.ngOnInit();
-    });
-  }
-
-  onShowEmployeeDetail(employee: Employee) {
-    const dialogRef = this.dialog.open(EmployeeDetailComponent, {
-      data : {
-        empl: employee
-      }
     });
   }
 }

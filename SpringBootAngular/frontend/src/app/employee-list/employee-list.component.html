@@ -1,45 +1,50 @@
 <div>
-    <div style="text-align: center">
-        <app-employee-search (mySelect)="onShowEmployeeDetail($event)" ></app-employee-search>
-    </div>
-    
-    <div style="text-align: right; margin-top: 10px;">
-        <button mat-raised-button class="btn-router" [routerLink]="['/employee/add']" >Add new employee</button>
-    </div>
+    <mat-card>
+        <div style="text-align: center">
+            <mat-card-title class="title">Danh sách nhân viên</mat-card-title>
+        </div>
+        <mat-divider style="margin-bottom: 10px;"></mat-divider>
+
+        <mat-card-content>
+            <div style="text-align: right; margin-top: 20px;">
+                <button mat-raised-button class="btn-router" [routerLink]="['/employees/add']" >Add new employee</button>
+            </div>
 
 
-    <table class="table" style="margin-top: 10px">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Họ tên</th>
-                <th scope="col" class="d-none d-sm-none d-md-table-cell">Giới tính</th>
-                <th scope="col" class="d-none d-sm-none d-md-table-cell">Ngày sinh</th>
-                <th scope="col" class="d-none d-sm-none d-md-table-cell">Số điện thoại</th>
-                <th scope="col">Phòng ban</th>
-                <th scope="col">Email</th>
-                
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let employee of employeeList, let i = index">
-                <th scope="row">{{ i + 1 }}</th>
-                <td >
-                    <span (click)="onShowEmployeeDetail(employee)">{{ employee.name }}</span>
-                </td>
-                <td class="d-none d-sm-none d-md-table-cell">{{ (employee.sex == 'male') ? "Nam" : "Nữ" }}</td>
-                <td class="d-none d-sm-none d-md-table-cell">{{ employee.birthday }}</td>
-                <td class="d-none d-sm-none d-md-table-cell">{{ employee.numberPhone }}</td>
-                <td>{{ employee.department.name }}</td>
-                <td>{{ employee.email }}</td>
-                <td>
-                    <div class="btn-field">
-                        <button mat-raised-button class="btn-action btn-more" (click)="onShowEmployeeDetail(employee)">More</button>
-                        <button mat-raised-button class="btn-action" color="warn" (click)="onDeleteEmployee(employee.id)">Delete</button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table" style="margin-top: 10px">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Họ tên</th>
+                        <th scope="col" class="d-none d-sm-none d-md-table-cell">Giới tính</th>
+                        <th scope="col" class="d-none d-sm-none d-md-table-cell">Ngày sinh</th>
+                        <th scope="col" class="d-none d-sm-none d-md-table-cell">Số điện thoại</th>
+                        <th scope="col"><a [routerLink]="['/departments']">Phòng ban</a></th>
+                        <th scope="col" class="d-none d-sm-none d-md-table-cell">Email</th>
+                        
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employeeList, let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td >
+                            <a [routerLink]="['/employees', employee.id, 'detail']">{{ employee.name }}</a>
+                        </td>
+                        <td class="d-none d-sm-none d-md-table-cell">{{ (employee.sex == 'male') ? "Nam" : "Nữ" }}</td>
+                        <td class="d-none d-sm-none d-md-table-cell">{{ employee.birthday }}</td>
+                        <td class="d-none d-sm-none d-md-table-cell">{{ employee.numberPhone }}</td>
+                        <td>{{ employee.department.name }}</td>
+                        <td class="d-none d-sm-none d-md-table-cell">{{ employee.email }}</td>
+                        <td>
+                            <div class="btn-field">
+                                <button mat-raised-button class="btn-action btn-more" [routerLink]="['/employees', employee.id, 'detail']" >More</button>
+                                <button mat-raised-button class="btn-action" color="warn" (click)="onDeleteEmployee(employee.id)">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card-content>
+    </mat-card>
 </div>
