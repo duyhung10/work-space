@@ -17,6 +17,9 @@ import { MatIconModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 
+import { MatTableModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +28,7 @@ import { StudentComponent } from './student/student.component';
 import { HomeComponent } from './home/home.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentAddComponent } from './student-add/student-add.component';
+import { TableTestComponent } from './table-test/table-test.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { StudentAddComponent } from './student-add/student-add.component';
     StudentComponent,
     HomeComponent,
     StudentListComponent,
-    StudentAddComponent
+    StudentAddComponent,
+    TableTestComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,9 @@ import { StudentAddComponent } from './student-add/student-add.component';
     MatIconModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatTableDataSource
   ],
   providers: [],
   bootstrap: [AppComponent]
