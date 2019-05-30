@@ -1,5 +1,5 @@
 export class Student {
-    public id: number;
+    public studentId: number;
     public name: string;
     public email: string;
 }

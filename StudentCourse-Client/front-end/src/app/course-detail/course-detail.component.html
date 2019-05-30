@@ -1,0 +1,60 @@
+<div class="container">
+  
+    <mat-card>
+      <div style="text-align: center">
+        <mat-card-title><b>Thông tin khóa học</b></mat-card-title>
+      </div>
+      <mat-divider style="margin-bottom: 10px;"></mat-divider>
+
+      <mat-card-content>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-label>Tên khóa học: </mat-label> <br/>
+            <span>{{course.name}}</span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-label>Học phí: </mat-label> <br/>
+            <span>{{course.fee }} $ </span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-label>Ngày bắt đầu: </mat-label> <br/>
+            <span>{{course.startDate}}</span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-label>Ngày kết thúc: </mat-label> <br/>
+            <span>{{course.endDate}}</span>
+          </div>
+          
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <br/>
+            <h4>Danh sách sinh viên đã đăng ký khóa học: </h4>
+            <table class="table" style="margin-top: 10px">
+              <thead class="thead-light">
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Tên sinh viên</th>
+                      <th scope="col">Email</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let student of studentsInCourse, let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{ student[2] }}</td>
+                      <td>{{ student[3] }}</td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <div class="button-field">
+        <button class="button-custom-goback" mat-raised-button type="button" (click)="onGoBack()">Quay lại</button>
+        <button class="button-custom" mat-raised-button color="primary" [routerLink]="['/courses', course.courseId, 'edit']">Chỉnh sửa</button>
+      </div>
+    </mat-card>
+</div>

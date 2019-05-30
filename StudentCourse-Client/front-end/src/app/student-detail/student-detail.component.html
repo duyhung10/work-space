@@ -1,0 +1,54 @@
+<div class="container">
+  
+    <mat-card>
+      <div style="text-align: center">
+        <mat-card-title><b>Thông tin cá nhân</b></mat-card-title>
+      </div>
+      <mat-divider style="margin-bottom: 10px;"></mat-divider>
+
+      <mat-card-content>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-label> Họ và tên: </mat-label> <br/>
+            <span>{{student.name}}</span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-label> Email: </mat-label> <br/>
+            <span>{{student.email}}</span>
+          </div>
+          
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <br/>
+            <h4>Danh sách khóa học đã đăng ký: </h4>
+            <table class="table" style="margin-top: 10px">
+              <thead class="thead-light">
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Khóa học</th>
+                      <th scope="col">Học phí</th>
+                      <th scope="col">Thời gian bắt đầu</th>
+                      <th scope="col">Thời gian kết thúc</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let course of coursesOfStudent, let i = index">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{ course[2] }}</td>
+                      <td>{{ course[3]}} $</td>
+                      <td>{{ course[4] }}</td>
+                      <td>{{ course[5] }}</td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <div class="button-field">
+        <button class="button-custom-goback" mat-raised-button type="button" (click)="onGoBack()">Quay lại</button>
+        <button class="button-custom" mat-raised-button color="primary" [routerLink]="['/students', student.studentId, 'edit']">Chỉnh sửa</button>
+      </div>
+    </mat-card>
+</div>

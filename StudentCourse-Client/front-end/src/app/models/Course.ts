@@ -1,5 +1,7 @@
 export class Course {
-    public id: number;
+    public courseId: number;
     public name: string;
     public fee: string;
+    public startDate: string;
+    public endDate: string;
 }

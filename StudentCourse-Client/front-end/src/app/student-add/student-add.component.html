@@ -1,40 +1,68 @@
 <div class="container">
-  <form [formGroup]="formAddUser">
+  <form [formGroup]="formAddStudent">
     <mat-card>
       <div style="text-align: center">
-        <mat-card-title>Thông tin cá nhân</mat-card-title>
+        <mat-card-title><b>Thông tin cá nhân</b></mat-card-title>
       </div>
       <mat-divider style="margin-bottom: 10px;"></mat-divider>
 
       <mat-card-content>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
             <mat-form-field class="form-field-control">
               <input matInput placeholder="Họ và tên" formControlName="name" />
             </mat-form-field>
+            <mat-error>
+                <app-error-validate [control]="formAddStudent.controls['name']" [name-control]="'Họ tên'" ></app-error-validate>
+            </mat-error>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
             <mat-form-field class="form-field-control">
               <input matInput placeholder="Email" formControlName="email" />
             </mat-form-field>
+            <mat-error>
+                <app-error-validate [control]="formAddStudent.controls['email']" [name-control]="'Email'" ></app-error-validate>
+            </mat-error>
           </div>
           
           <div class="col-xs-12 col-sm-12 col-md-12">
-            <h4>Chọn khóa học: </h4>
-            <section class="example-section">
-                <mat-checkbox class="example-margin">Lập trình hướng đối tượng</mat-checkbox> <br/>
-                <mat-checkbox class="example-margin">Cơ sở dữ liệu</mat-checkbox> <br/>
-                <mat-checkbox class="example-margin">Lập trình mạng</mat-checkbox> <br/>
-                <mat-checkbox class="example-margin">Công nghệ phần mềm</mat-checkbox> <br/>
-              </section>
+            <br/>
+            <h4>Đăng ký học: </h4>
+            <table class="table" style="margin-top: 10px">
+              <thead class="thead-light">
+                  <tr>
+                      <th scope="col"></th>
+                      <th scope="col">#</th>
+                      <th scope="col">Khóa học</th>
+                      <th scope="col">Học phí</th>
+                      <th scope="col">Thời gian bắt đầu</th>
+                      <th scope="col">Thời gian kết thúc</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let course of courses, let i = index">
+                      <td>
+                          <mat-checkbox class="example-margin"  (change) = "onClickCheckBox(course.courseId)"></mat-checkbox>
+                      </td>
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>
+                        <a [routerLink]="['/courses', course.courseId, 'detail']" >{{ course.name }}</a>
+                      </td>
+                      <td>{{ course.fee }} $</td>
+                      <td>{{ course.startDate }}</td>
+                      <td>{{ course.endDate }}</td>
+                  </tr>
+              </tbody>
+          </table>
           </div>
         </div>
       </mat-card-content>
 
       <div class="button-field">
         <button class="button-custom-goback" mat-raised-button type="button" (click)="onGoBack()">Quay lại</button>
-        <button class="button-custom" mat-raised-button (click)="onFormReset()">Xóa hết</button>
-        <button class="button-custom" mat-raised-button color="primary" type="submit" [disabled]="formAddUser.invalid" (click)="onSubmitAdd()">Xác nhận</button>
+        <button class="button-custom" mat-raised-button color="primary" type="submit" [disabled]="formAddStudent.invalid" (click)="onSubmitAdd()">Xác nhận</button>
       </div>
 
     </mat-card>

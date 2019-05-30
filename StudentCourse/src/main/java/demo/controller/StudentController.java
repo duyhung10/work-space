@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import demo.entity.Enrolment;
 import demo.entity.Student;
+import demo.service.EnrolmentService;
 import demo.service.StudentService;
 
 @RestController
@@ -24,6 +25,9 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
+	@Autowired
+	EnrolmentService enrolmentService;
+	
 	// Get All Student
 	@GetMapping
 	public List<Student> findAllStudent() {
@@ -53,20 +57,21 @@ public class StudentController {
 		studentService.delete(id);
 	}
 	
-	
+	// Tìm các khóa học của sinh viên
 	@GetMapping("/{id}/courses")
-	public List<Enrolment> findAllCourseOfStudent(@PathVariable int id){
+	public List findAllCourseOfStudent(@PathVariable int id){
 		return studentService.findAllCourseOfStudent(id);
 	}
 	
-	@GetMapping("/{id}/register")
-	public void registerCourseForStudent(@RequestBody List<Enrolment> listEnrolment, @PathVariable int id) {
-		studentService.registerCourseForStudent(listEnrolment, id);
+	// Thêm dữ liệu vào bảng enrolment
+	@PostMapping("/{id}/register")
+	public Enrolment registerCourseForStudent(@RequestBody Enrolment enrolment) {
+		return enrolmentService.create(enrolment);
 	}
 	
-	@GetMapping("/insert-into-enrolment")
-	public void insertDataIntoEnrolment(@RequestBody List<Enrolment> listEnrolment) {
-		studentService.insertDataIntoEnrolment(listEnrolment);
+	// Xóa dữ liệu trong bảng enrolment có điều kiệu
+	@PutMapping("/{id}/cancel-register")
+	public int deteleRegister(@RequestBody Enrolment enrolment) {
+		return enrolmentService.deleteEnrolment(enrolment);
 	}
-	
 }

@@ -32,4 +32,12 @@ export class StudentListComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+
+  onDeleteStudent(id: number){
+    this.subscription = this.studentService.deleteStudent(id).subscribe(data => {
+      alert("Xóa sinh viên thành công");
+      // Gọi lại OnInit để cập nhật lại danh sách Student,
+      this.ngOnInit();
+    });
+  }
 }

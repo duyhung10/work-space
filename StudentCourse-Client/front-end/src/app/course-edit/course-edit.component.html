@@ -1,0 +1,75 @@
+<div class="container">
+  <form [formGroup]="formCourse">
+    <mat-card>
+      <div style="text-align: center">
+        <mat-card-title><b>Thông tin khóa học</b></mat-card-title>
+      </div>
+      <mat-divider style="margin-bottom: 10px;"></mat-divider>
+  
+      <mat-card-content>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-form-field class="form-field-control">
+              <mat-label>Tên khóa học:</mat-label>
+              <input matInput type="text" [(ngModel)]="course.name" [ngModelOptions]="{standalone: true}" />
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-form-field class="form-field-control">
+              <mat-label>Email:</mat-label>
+              <input matInput type="text" [(ngModel)]="course.fee" [ngModelOptions]="{standalone: true}"  />
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-form-field class="form-field-control">
+              <input matInput [matDatepicker]="picker1" placeholder="Ngày bắt đầu" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6">
+            <br/>
+            <mat-form-field class="form-field-control">
+              <input matInput [matDatepicker]="picker2" placeholder="Ngày kết thúc" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <br/>
+            <h4>Danh sách sinh viên đã đăng ký khóa học: </h4>
+            <table class="table" style="margin-top: 10px">
+              <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên sinh viên</th>
+                    <th scope="col">Email</th>
+                    <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of studentsInCourse, let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[3] }}</td>
+                    <td>
+                        <mat-checkbox class="example-margin"  (change) = "onClickCheckBox(student[1])">Xóa sinh viên</mat-checkbox>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+  
+      <div class="button-field">
+        <button class="button-custom-goback" mat-raised-button type="button" (click)="onGoBack()">Quay lại</button>
+        <button class="button-custom" mat-raised-button color="primary" (click)="onEditCourse()">Xác nhận</button>
+      </div>
+    </mat-card>
+  </form>  
+</div>

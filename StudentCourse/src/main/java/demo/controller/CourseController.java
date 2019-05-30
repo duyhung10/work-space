@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.entity.Course;
+import demo.entity.Enrolment;
 import demo.service.CourseService;
+import demo.service.EnrolmentService;
 
 @RestController
 @RequestMapping("/api/courses")
@@ -23,6 +25,9 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 
+	@Autowired
+	EnrolmentService enrolmentService;
+	
 	// Get All Course
 	@GetMapping
 	public List<Course> findAllCourse() {
@@ -50,5 +55,17 @@ public class CourseController {
 	@DeleteMapping("/{id}")
 	public void detele(@PathVariable int id) {
 		courseService.delete(id);
+	}
+	
+	// Tìm các sinh viên trong 1 khóa học
+	@GetMapping("/{id}/students")
+	public List findAllStudentOfCourse(@PathVariable int id){
+		return courseService.findAllStudentOfCourse(id);
+	}
+	
+	// Xóa dữ liệu trong bảng enrolment có điều kiệu
+	@PutMapping("/{id}/delete-student")
+	public int deteleStudent(@RequestBody Enrolment enrolment) {
+		return enrolmentService.deleteEnrolment(enrolment);
 	}
 }

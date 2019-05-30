@@ -1,0 +1,64 @@
+<div class="container">
+    <form [formGroup]="formAddCourse">
+      <mat-card>
+        <div style="text-align: center">
+          <mat-card-title>Thông tin Khóa học</mat-card-title>
+        </div>
+        <mat-divider style="margin-bottom: 10px;"></mat-divider>
+  
+        <mat-card-content>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <br/>
+              <mat-form-field class="form-field-control">
+                <input matInput placeholder="Tên khóa học" formControlName="name" />
+              </mat-form-field>
+              <mat-error>
+                  <app-error-validate [control]="formAddCourse.controls['name']" [name-control]="'Tên khóa học'" ></app-error-validate>
+              </mat-error>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <br/>
+              <mat-form-field class="form-field-control">
+                <span matPrefix>$ &nbsp;</span>
+                <input matInput placeholder="Học phí" formControlName="fee" />
+              </mat-form-field>
+              <mat-error>
+                  <app-error-validate [control]="formAddCourse.controls['fee']" [name-control]="'Học phí'" ></app-error-validate>
+              </mat-error>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <br/>
+              <mat-form-field class="form-field-control">
+                <input matInput [matDatepicker]="picker1" placeholder="Ngày bắt đầu" formControlName="startDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+              <mat-error>
+                  <app-error-validate [control]="formAddCourse.controls['startDate']" [name-control]="'Ngày bắt đầu'" ></app-error-validate>
+              </mat-error>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <br/>
+              <mat-form-field class="form-field-control">
+                <input matInput [matDatepicker]="picker2" placeholder="Ngày kết thúc" formControlName="endDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+              <mat-error>
+                  <app-error-validate [control]="formAddCourse.controls['endDate']" [name-control]="'Ngày kết thúc'" ></app-error-validate>
+              </mat-error>
+            </div>
+          </div>
+        </mat-card-content>
+  
+        <div class="button-field">
+          <button class="button-custom-goback" mat-raised-button type="button" (click)="onGoBack()">Quay lại</button>
+          <button class="button-custom" mat-raised-button color="primary" type="submit" [disabled]="formAddCourse.invalid" (click)="onSubmitAdd()">Xác nhận</button>
+        </div>
+  
+      </mat-card>
+  
+    </form>
+  </div>

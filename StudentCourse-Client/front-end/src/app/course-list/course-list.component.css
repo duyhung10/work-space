@@ -1,0 +1,18 @@
+.btn-router {
+    background-color: #086A87;
+    color: white;
+}
+.btn-more {
+    background-color: #31B404;
+    color: white;
+}
+.btn-action {
+    margin-left: 5px;
+}
+.btn-field {
+    text-align: right;
+}
+
+span:hover {
+    color: rgb(138, 144, 233);
+}

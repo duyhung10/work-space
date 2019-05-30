@@ -22,6 +22,10 @@ public class Course {
 	
 	private int fee;
 	
+	private String startDate;
+	
+	private String endDate;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "course", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Enrolment> enrolments;
@@ -58,6 +62,22 @@ public class Course {
 
 	public void setFee(int fee) {
 		this.fee = fee;
+	}
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 	public Set<Enrolment> getEnrolments() {

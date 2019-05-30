@@ -17,10 +17,6 @@ import { MatIconModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 
-import { MatTableModule } from '@angular/material';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +24,14 @@ import { StudentComponent } from './student/student.component';
 import { HomeComponent } from './home/home.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentAddComponent } from './student-add/student-add.component';
-import { TableTestComponent } from './table-test/table-test.component';
+import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { StudentEditComponent } from './student-edit/student-edit.component';
+import { CourseComponent } from './course/course.component';
+import { CourseListComponent } from './course-list/course-list.component';
+import { CourseAddComponent } from './course-add/course-add.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { CourseEditComponent } from './course-edit/course-edit.component';
+import { ErrorValidateComponent } from './error-validate/error-validate.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,14 @@ import { TableTestComponent } from './table-test/table-test.component';
     HomeComponent,
     StudentListComponent,
     StudentAddComponent,
-    TableTestComponent
+    StudentDetailComponent,
+    StudentEditComponent,
+    CourseComponent,
+    CourseListComponent,
+    CourseAddComponent,
+    CourseDetailComponent,
+    CourseEditComponent,
+    ErrorValidateComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +66,7 @@ import { TableTestComponent } from './table-test/table-test.component';
     MatSelectModule,
     MatIconModule,
     MatCheckboxModule,
-    MatButtonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatTableDataSource
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

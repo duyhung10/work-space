@@ -1,0 +1,44 @@
+<div class="container">
+    <mat-card>
+        <div style="text-align: center">
+            <mat-card-title class="title">Danh sách khóa học</mat-card-title>
+        </div>
+        <mat-divider style="margin-bottom: 10px;"></mat-divider>
+  
+        <mat-card-content>
+            <div style="text-align: right; margin-top: 20px;">
+                <button mat-raised-button class="btn-router" [routerLink]="['/courses/create']" >Add new course</button>
+            </div>
+  
+            <table class="table" style="margin-top: 10px">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tên khóa học</th>
+                        <th scope="col">Học phí</th>
+                        <th scope="col">Ngày bắt đầu</th>
+                        <th scope="col">Ngày kết thúc</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of courses, let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td >
+                            <a  [routerLink]="['/courses', course.courseId, 'detail']" >{{ course.name }}</a>
+                        </td>
+                        <td >{{ course.fee }} $</td>
+                        <td >{{ course.startDate }}</td>
+                        <td >{{ course.endDate }}</td>
+                        <td>
+                            <div class="btn-field">
+                                <button mat-raised-button class="btn-action btn-more" [routerLink]="['/courses', course.courseId, 'detail']" >More</button>
+                                <button mat-raised-button class="btn-action" color="warn" (click)="onDeleteCourse(course.courseId)">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card-content>
+    </mat-card>
+  </div>
