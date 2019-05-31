@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { StudentService } from '../services/student.service';
@@ -13,7 +14,11 @@ import { Student } from '../models/Student';
 export class StudentListComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
-  public students: {};
+  // public students: {};
+  public dataSource;
+  public displayedColumns: string[] = ['index', 'name', 'email', 'action'];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     public studentService: StudentService,
@@ -21,9 +26,11 @@ export class StudentListComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.subscription = this.studentService.getAllStudent().subscribe(data => {
-      this.students = data;
-      console.log(this.students);
+    this.subscription = this.studentService.getAllStudent().subscribe((data: Student[]) => {
+      // this.students = data;
+      // console.log(this.students);
+      this.dataSource = new MatTableDataSource<Student>(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
 

@@ -16,3 +16,11 @@
 span:hover {
     color: rgb(138, 144, 233);
 }
+
+table {
+    width: 100%;
+}
+th {
+    font-size: 16px;
+    background-color: #A9A9F5
+}
