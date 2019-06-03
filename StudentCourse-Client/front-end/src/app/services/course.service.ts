@@ -37,8 +37,7 @@ export class CourseService {
   }
 
   // Xóa sinh viên khỏi khóa học hiện tại
-  deleteStudentInCourse(enrolment: Enrolment){
-    let courseId = enrolment.course.courseId;
-    return this.http.put(`${this.API}/${courseId}/delete-student`, enrolment);
+  deleteStudentInCourse(courseId: number, studentId: number){
+    return this.http.delete(`${this.API}/${courseId}/delete-student/${studentId}`);
   }
 }

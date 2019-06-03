@@ -70,8 +70,8 @@ public class StudentController {
 	}
 	
 	// Xóa dữ liệu trong bảng enrolment có điều kiệu
-	@PutMapping("/{id}/cancel-register")
-	public int deteleRegister(@RequestBody Enrolment enrolment) {
-		return enrolmentService.deleteEnrolment(enrolment);
+	@DeleteMapping("/{studentId}/cancel-register/{courseId}")
+	public int deteleStudent(@PathVariable("studentId") int studentId, @PathVariable("courseId") int courseId) {
+		return enrolmentService.deleteEnrolment(studentId, courseId);
 	}
 }

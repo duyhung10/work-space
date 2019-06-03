@@ -45,8 +45,7 @@ export class StudentService {
   }
 
   // Hủy đăng kí học cho sinh viên
-  cancelRegister(enrolment: Enrolment){
-    let studentId = enrolment.student.studentId;
-    return this.http.put(`${this.API}/${studentId}/cancel-register`, enrolment);
+  cancelRegister(studentId: number, courseId: number){
+    return this.http.delete(`${this.API}/${studentId}/cancel-register/${courseId}`);
   }
 }

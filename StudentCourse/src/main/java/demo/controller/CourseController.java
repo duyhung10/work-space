@@ -62,10 +62,10 @@ public class CourseController {
 	public List findAllStudentOfCourse(@PathVariable int id){
 		return courseService.findAllStudentOfCourse(id);
 	}
-	
+
 	// Xóa dữ liệu trong bảng enrolment có điều kiệu
-	@PutMapping("/{id}/delete-student")
-	public int deteleStudent(@RequestBody Enrolment enrolment) {
-		return enrolmentService.deleteEnrolment(enrolment);
+	@DeleteMapping("/{courseId}/delete-student/{studentId}")
+	public int deteleStudent(@PathVariable("courseId") int courseId, @PathVariable("studentId") int studentId) {
+		return enrolmentService.deleteEnrolment(studentId, courseId);
 	}
 }

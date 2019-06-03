@@ -77,13 +77,11 @@ export class StudentEditComponent implements OnInit {
 
     // Hủy đăng kí môn học
     for(let id of this.listIdCourseSelected){
-      let course = new Course();
-      course.courseId = id;
-      let enrolment = new Enrolment();
-      enrolment.student = this.student;
-      enrolment.course = course;
+
+      let studentId = this.student.studentId;
+      let courseId = id;
       
-      this.subscription2 = this.studentService.cancelRegister(enrolment).subscribe(data => {
+      this.subscription2 = this.studentService.cancelRegister(studentId, courseId).subscribe(data => {
         console.log(data);
       });
     }

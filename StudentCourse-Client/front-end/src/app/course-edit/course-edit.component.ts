@@ -102,14 +102,10 @@ export class CourseEditComponent implements OnInit, OnDestroy {
     
     // Xóa sinh viên khỏi khóa học
     for(let id of this.listIdStudentSelected){
-      let student = new Student();
-      student.studentId = id;
-      let enrolment = new Enrolment();
-      enrolment.course = this.course;
-      enrolment.student = student;
-      
+      let courseId = this.course.courseId;
+      let studentId = id;
 
-      this.subscription2 = this.courseService.deleteStudentInCourse(enrolment).subscribe(data => {
+      this.subscription2 = this.courseService.deleteStudentInCourse(courseId, studentId).subscribe(data => {
         console.log(data);
       });
     }
