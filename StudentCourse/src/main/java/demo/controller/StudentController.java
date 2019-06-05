@@ -63,10 +63,11 @@ public class StudentController {
 		return studentService.findAllCourseOfStudent(id);
 	}
 	
+
 	// Thêm dữ liệu vào bảng enrolment
 	@PostMapping("/{id}/register")
-	public Enrolment registerCourseForStudent(@RequestBody Enrolment enrolment) {
-		return enrolmentService.create(enrolment);
+	public int registerCourseForStudent(@RequestBody Enrolment enrolment) {
+		return enrolmentService.create(enrolment).getId();
 	}
 	
 	// Xóa dữ liệu trong bảng enrolment có điều kiệu

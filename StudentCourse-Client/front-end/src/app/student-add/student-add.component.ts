@@ -72,7 +72,7 @@ export class StudentAddComponent implements OnInit, OnDestroy {
     this.subscription = this.studentService.addNewStudent(this.student).subscribe((data: Student) => {
       this.student = data;
 
-      console.log(this.student.studentId);
+      // console.log(this.student.studentId);
 
       for(let id of this.listIdCourseSelected){
         let course = new Course();
@@ -81,7 +81,7 @@ export class StudentAddComponent implements OnInit, OnDestroy {
         enrolment.student = this.student;
         enrolment.course = course;
 
-        this.subscription2 = this.studentService.registerCourseForStudent(enrolment).subscribe((data: Student) =>{
+        this.subscription2 = this.studentService.registerCourseForStudent(enrolment).subscribe(data =>{
           console.log(data);
         });
       }

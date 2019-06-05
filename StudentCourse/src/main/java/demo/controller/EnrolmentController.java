@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,10 @@ public class EnrolmentController {
 	@GetMapping
 	public List<Enrolment> findAllEnrolment() {
 		return enrolmentService.getAll();
+	}
+	@GetMapping("/{id}")
+	public Enrolment findById(@PathVariable int id) {
+		return enrolmentService.findById(id);
 	}
 
 }

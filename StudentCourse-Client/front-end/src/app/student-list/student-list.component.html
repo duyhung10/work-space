@@ -34,9 +34,9 @@
                     <td mat-cell *matCellDef="let student">
                         <div class="btn-field">
                             <button mat-raised-button class="btn-action btn-more"
-                                [routerLink]="['/students', student.studentId, 'detail']">More</button>
+                                [routerLink]="['/students', student.studentId, 'detail']"><i class="fas fa-info-circle"></i></button>
                             <button mat-raised-button class="btn-action" color="warn"
-                                (click)="onDeleteStudent(student.studentId)">Delete</button>
+                                (click)="onDeleteStudent(student.studentId)"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </td>
                 </ng-container>

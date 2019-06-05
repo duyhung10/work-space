@@ -43,12 +43,10 @@ public class EnrolmentService {
 	// Xóa dữ liệu có điều kiện
 	@Transactional
 	public int deleteEnrolment(int studentId, int courseId) {
-
 		String query = "DELETE FROM student_course.enrolment WHERE student_id=" + studentId +" AND course_id=" + courseId +";";
 		Query q = entityManager.createNativeQuery(query);
 		
 		q.executeUpdate();
-		
 		return  studentId;
 	}
 
